@@ -1,6 +1,6 @@
 <div class="container  mt-5 ">
 
-    <div class="card  text " style="padding: 20px;color:green;" >
+    <div class="text " style="padding: 20px;color:green;" >
    
        <h1>{{welcomeMessage}} {{loginUser.userFirstName}} , </h1>
    
@@ -16,7 +16,7 @@
             <th style="width:22%;" > Action </th>    
         </tr>
     
-         <tr  *ngFor="let user of listOfUsers"  >
+         <tr *ngFor="let user of listOfUsers"  >
         
           <ng-container *ngIf="user.role[0].roleName != 'Admin'" >
           <td> {{ user.userName  }} </td>
@@ -24,8 +24,8 @@
           <td>{{ user.userLastName }}</td>
           <td>{{ user.role[0].roleName }}</td>
           <td> 
-            <button type="button" (click)="updateUser(user.userName)" class="btn btn-outline-info  m-1"  >  UPDATE </button> 
-            <button type="button" (click)="deleteUser(user.userName)" class="btn btn-outline-danger m-1"  > DELETE </button>            
+            <button type="button" (click)="updateUser(user.userName)" class="btn btn-primary m-1" style="background-color: var(--bs-btn-hover-bg);"   >  UPDATE </button> 
+            <button type="button" (click)="deleteUser(user.userName)" class="btn btn-danger m-1" style="background-color: var(--bs-btn-hover-bg);" > DELETE </button>            
           </td>
           </ng-container>
         
