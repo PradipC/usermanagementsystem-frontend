@@ -1,0 +1,21 @@
+table, th, td {
+    border: 1px solid;
+  }
+
+.thead-dark{
+  background-color: black;
+  color: white;
+}  
+
+.m-1{
+  margin: 1%;
+}
+
+.no-item-image{
+  margin-left: 35%;
+}
+
+.no-user-message{
+  margin-left: 8%;
+  color: red;
+}

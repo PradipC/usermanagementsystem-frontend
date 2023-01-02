@@ -1,0 +1,12 @@
+header {
+    height: 50vh;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    color: black;
+    background: #ffce3f url(https://github.com/tiffanyadu/portfolio/blob/master/assets/imgs/yellow-star.png?raw=true) fixed;
+}
+

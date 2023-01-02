@@ -1,0 +1,15 @@
+
+#footer-sec {
+    position:fixed;
+    bottom:0;
+    background-color: red;
+    height:5%;
+    width: 100%;
+    background: #202020;
+    padding: 25px 0;
+    color: #878787;
+}
+
+#footer-sec p{
+    margin-top: -10px;
+}

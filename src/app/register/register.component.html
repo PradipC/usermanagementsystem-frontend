@@ -1,0 +1,42 @@
+<div class="container  mt-5 card text text-center"  style="padding: 20px;color:green;">
+
+  
+<div class="container  form-grey form-padding form-border " >
+
+  <div *ngIf="isValidationFail"  >
+    <div class="alert alert-danger alert-dismissible fade show " role="alert">
+      {{ registerError.validationMessage }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+
+
+ 
+
+    <form (ngSubmit) = "registerUser()"  >
+        
+        <div class="mb-3">
+          <input type="text" placeholder="Enter User Name here"  class="form-control" id="userName" name="userName"  [(ngModel)]="user.userName"    >
+        </div>
+        
+        <div class="mb-3">
+            <input type="text" placeholder="Enter First Name here" class="form-control" id="userFirstName" name="userFirstName" [(ngModel)]="user.userFirstName" >
+          </div>
+    
+    
+          <div class="mb-3">
+            <input type="text" placeholder="Enter Last Name here" class="form-control" id="userLastName" name="userLastName" [(ngModel)]="user.userLastName" >
+          </div>
+    
+          <div class="mb-3">
+           
+            <input type="text" placeholder="Enter Password here" class="form-control" id="userPassword" name="userPassword" [(ngModel)]="user.userPassword" >
+          </div>
+    
+    
+        <input type="submit" value="Register" class="btn btn btn-outline-primary form-control rounded-0 ">
+      </form>
+    </div>
+
+
+ </div>   

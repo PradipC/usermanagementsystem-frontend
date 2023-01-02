@@ -1,0 +1,22 @@
+<div class="container  mt-5 card text text-center"  style="padding: 20px;color:green;">
+
+
+<div class="container form-grey form-padding form-border " >
+    <form (ngSubmit) = "updateUser()"  >
+        
+        
+        <div class="mb-3">
+            <input type="text" placeholder="Enter First Name here " class="form-control" id="userFirstName" name="userFirstName" [(ngModel)]="user.userFirstName" >
+          </div>
+    
+    
+          <div class="mb-3">
+            <input type="text" placeholder="Enter Last Name here " class="form-control" id="userLastName" name="userLastName" [(ngModel)]="user.userLastName" >
+          </div>
+    
+    
+          <input type="submit" value="UPDATE" class="btn btn btn-outline-primary form-control rounded-0 ">
+      </form>
+    </div>
+
+ </div>
