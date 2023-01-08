@@ -23,13 +23,30 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.checkServerStatus();
     
     this.isRegister=this.activateRouter.snapshot.params['isRegister'];
-
     
+   
   }
 
+
+  checkServerStatus(){
+    this.userService.isServerReady().subscribe(response=>{
+      this.showError=false;
+  
+    },error => {
+      this.showError=true;
+      this.message="something went wrong , Please contact Administrator !";
+ 
+    });
+  }
+
+
+
   loginUser(){
+
+    this.isRegister=false;
 
     this.userService.login(this.jwtRequest).subscribe(response => {
 
@@ -40,10 +57,8 @@ export class LoginComponent implements OnInit {
       const roleName = response.user.role[0].roleName;
       
       if(roleName === 'Admin'){
-        console.log("inside if ");
         this.router.navigate(['/admin']);
       }else{
-        console.log("inside else  ");
         this.router.navigate(['/user']);        
       }
       
@@ -52,6 +67,7 @@ export class LoginComponent implements OnInit {
       this.showError=true;
       this.message="You have entered an invalid username or password";
     });
+
 
   }
 

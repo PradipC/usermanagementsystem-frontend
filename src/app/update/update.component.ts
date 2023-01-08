@@ -14,6 +14,8 @@ export class UpdateComponent implements OnInit {
 
   userName: string; 
   user:User=new User();
+  showError : boolean = false;
+  message: string; 
 
   
 
@@ -22,7 +24,10 @@ export class UpdateComponent implements OnInit {
     this.userName=this.activateRoute.snapshot.params['userName'];
     this.userService.getUserByUserName(this.userName).subscribe(response=>{
         this.user=response;
-    },error => alert("Please contact Administrator ")
+    },error => {
+      this.showError=true;
+      this.message="Something went wrong , Please contact administrator!";
+    }
     );
    
 
@@ -34,7 +39,11 @@ export class UpdateComponent implements OnInit {
       response = this.user;
       this.getAllUsers();
 
-  },error => alert("Please contact Administrator "));
+  },error => {
+    this.showError=true;
+    this.message="Input Field should not be blank and size must be between 3 and 30";
+
+  });
 
 
   }

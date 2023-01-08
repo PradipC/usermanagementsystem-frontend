@@ -23,8 +23,7 @@ export class UserComponent implements OnInit {
     
 
       const currentHour = this.date.getHours();
-      console.log("currentHour : "+currentHour);
-
+      
       if (currentHour >= 6 && currentHour < 12) {
           this.welcomeMessage = 'Good morning!';
       } else if (currentHour >= 12 && currentHour < 18) {

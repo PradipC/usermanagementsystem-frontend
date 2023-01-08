@@ -17,14 +17,16 @@
       </div>
  
     
-       <form  (ngSubmit)="loginUser()"  >
+       <form  (ngSubmit)="loginUser()"  autocomplete="off" >
        
            <input  type="text"  name="userName"  id="userName" [(ngModel)]="jwtRequest.userName"
-                class="form-control mb-3 "  placeholder="Enter your username" >
+                class="form-control mb-3 "  placeholder="Enter your username"
+                 >
     
     
            <input  type="password" ngModel  name="userPassword"  id="userPassword" [(ngModel)]="jwtRequest.userPassword" 
-                class="form-control mb-3 " placeholder="Enter your password" >
+                class="form-control mb-3 " placeholder="Enter your password"
+                 >
     
             <input type="submit" value="Login" class="btn btn-outline-primary form-control rounded-0"    >
     

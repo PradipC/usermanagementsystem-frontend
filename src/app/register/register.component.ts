@@ -17,6 +17,9 @@ export class RegisterComponent implements OnInit {
   isValidationFail:boolean = false;
 
   registerError : any = '';
+  isUserNameAlreadyPresent:boolean = false;
+
+
 
   ngOnInit(): void {
   }
@@ -24,18 +27,42 @@ export class RegisterComponent implements OnInit {
   registerUser(){
 
     this.isValidationFail=false;
+    
+    this.isUserNameAlreadyExist(this.user.userName);
 
-    this.userService.registerNewUser(this.user).subscribe( response =>{    
-      const isRegister=true;
-      this.router.navigate(['/login',isRegister]);
+  }
+
+
+
+  public isUserNameAlreadyExist(userName: string) {
+
+    this.userService.isUserNameAlreadyExist(userName).subscribe( response =>{   
       
-   },error=>{
+      if(response){
+       
+        this.registerError={ validationMessage: 'UserName is already exist.!' };
+        this.isValidationFail=true;
+        this.router.navigate(['/register']);
+        
 
-      this.registerError={ validationMessage: 'Input Field should not be blank and size must be between 3 and 30' };
-      this.isValidationFail=true;
-      this.router.navigate(['/register']);
-   } );
+      }else{
 
+        this.userService.registerNewUser(this.user).subscribe( response =>{    
+          const isRegister=true;
+          this.router.navigate(['/login',isRegister]);
+          
+       },error=>{
+         
+          this.registerError={ validationMessage: 'Input Field should not be blank and size must be between 3 and 30' };
+          this.isValidationFail=true;
+          this.router.navigate(['/register']);
+       } );
+
+
+      }
+      
+   });
+  
   }
 
 

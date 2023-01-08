@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 })
 export class UserService {
 
+  
   constructor(private httpClient : HttpClient,private authService:AuthService) { }
 
   baseURL = "http://localhost:8080";
@@ -27,13 +28,18 @@ export class UserService {
 
 
   public login(jwtRequest:JwtRequest) :  Observable<JwtResponse> {
-
-    console.log("calling spring controller -- ");
-    
+  
     return this.httpClient.post<JwtResponse>(this.baseURL + "/authenticate",
       jwtRequest, { headers: this.requestHeader });      
 
   }
+
+
+
+  public isServerReady() : Observable<boolean>{
+    return  this.httpClient.get<boolean>( `${this.UserBaseURL}/ping` , { headers: this.requestHeader } );
+  }
+
 
   public roleMatch(allowedRoles : any) : boolean {
 
@@ -64,9 +70,8 @@ export class UserService {
 }
 
 
-
-   
    public getUsersList() : Observable<User[]>{
+
     this.usersList = this.httpClient.get<User[]>( `${this.UserBaseURL}/get` );
     return this.usersList;
    }
@@ -74,6 +79,14 @@ export class UserService {
    getUserByUserName(userName:string) : Observable<User>{
     return this.httpClient.get<User>( `${this.UserBaseURL}/get/${userName}` );      
  }
+
+ 
+
+
+ isUserNameAlreadyExist(userName:string) : Observable<boolean>{
+  return this.httpClient.get<boolean>( `${this.UserBaseURL}/validat-name/${userName}` , { headers: this.requestHeader } );      
+}
+
 
 
  updateUser(userName:string , user:User) : Observable<User> {

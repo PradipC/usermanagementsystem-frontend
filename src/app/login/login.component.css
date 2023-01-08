@@ -1,0 +1,16 @@
+.main-head {
+    height: 150px;
+    background: #fff;
+  }
+  
+  .sidenav {
+    height: 100%;
+    background-color: rgb(59, 57, 57);
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .main {
+    padding: 0px 10px;
+  }
+  

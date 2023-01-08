@@ -11,7 +11,9 @@ import { UserService } from '../_services/user.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private authService:AuthService,private userService:UserService,private router : Router) { }
+  constructor(private authService:AuthService,
+    private userService:UserService,
+    private router : Router) { }
 
   listOfUsers : User[];
   
@@ -27,8 +29,7 @@ export class AdminComponent implements OnInit {
     this.getUsers();
 
     const currentHour = this.date.getHours();
-    console.log("currentHour : "+currentHour);
-
+    
     if (currentHour >= 6 && currentHour < 12) {
         this.welcomeMessage = 'Good morning!';
     } else if (currentHour >= 12 && currentHour < 18) {
@@ -40,7 +41,8 @@ export class AdminComponent implements OnInit {
 
   
   public getUsers(){
-    this.userService.getUsersList().subscribe( response => {     
+    this.userService.getUsersList().subscribe( response => {  
+      
       this.listOfUsers=response;
     },(error) => {
        //alert("Please contact Administrator..");
@@ -57,7 +59,7 @@ export class AdminComponent implements OnInit {
     deleteUser(userName:string){
      this.userService.deleteUser(userName).subscribe(response => {
          this.getUsers();     
-     },error => alert("Please contact Administrator inside delete"))
+     },error => alert("Please contact Administrator"))
      
     }
 
