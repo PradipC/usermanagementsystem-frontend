@@ -53,7 +53,12 @@ export class AdminComponent implements OnInit {
 
     deleteUser(userName:string){
      this.userService.deleteUser(userName).subscribe(response => {
-     this.page.number--;
+     if(this.page.number != 0){
+       this.page.number=this.page.number-1;
+     }else{
+       this.page.number=0;
+     }
+     
      this.getUsersList(this.page);    
     },error => alert("Please contact Administrator"))
      
