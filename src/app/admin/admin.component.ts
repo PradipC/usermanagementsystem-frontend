@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../entity/user';
+import { Page } from '../entity/page';
 import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
 
@@ -18,6 +19,7 @@ export class AdminComponent implements OnInit {
   listOfUsers : User[];
   
   loginUser : User;
+  page = new Page();
 
   date : Date = new Date();
   welcomeMessage : string = 'Hello';
@@ -26,7 +28,8 @@ export class AdminComponent implements OnInit {
 
     this.loginUser = this.authService.getLoginUser();    
 
-    this.getUsers();
+  
+    this.getUsersList(this.page);
 
     const currentHour = this.date.getHours();
     
@@ -40,14 +43,6 @@ export class AdminComponent implements OnInit {
   }
 
   
-  public getUsers(){
-    this.userService.getUsersList().subscribe( response => {  
-      
-      this.listOfUsers=response;
-    },(error) => {
-       //alert("Please contact Administrator..");
-    });
-  }
 
 
    
@@ -58,11 +53,55 @@ export class AdminComponent implements OnInit {
 
     deleteUser(userName:string){
      this.userService.deleteUser(userName).subscribe(response => {
-         this.getUsers();     
-     },error => alert("Please contact Administrator"))
+     this.page.number--;
+     this.getUsersList(this.page);    
+    },error => alert("Please contact Administrator"))
      
     }
 
 
 
+    getUsersList(page : Page){
+      
+   
+      this.userService.getUsersListWithPagination(page).subscribe(response => {
+    
+        this.listOfUsers = response.content; 
+        this.page = response;
+ 
+       },() => alert("Please contact Administrator"))
+       
+    }
+
+  
+
+
+
+
+
+
+    nextPage() {
+
+      this.page.number++;      
+      this.getUsersList(this.page);
+
+    }
+  
+    previousPage() {
+      this.page.number--;
+      this.getUsersList(this.page);
+
+    }
+  
+    hasNext() {
+      return this.page.last;
+    }
+  
+    hasPrevious() {
+      return this.page.first;
+    }
+
+
+
 }
+

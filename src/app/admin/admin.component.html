@@ -5,7 +5,7 @@
        <h1>{{welcomeMessage}} {{loginUser.userFirstName}} , </h1>
    
         
-      <table *ngIf="listOfUsers.length > 1; else noItems"  class="table table-success table-striped text text-center user-table mt-5">
+      <table *ngIf="listOfUsers.length > 0; else noItems"  class="table table-success table-striped text text-center user-table mt-5">
         
         <tr  class="thead-dark" >
             <th> User Name </th>
@@ -28,8 +28,13 @@
             <button type="button" (click)="deleteUser(user.userName)" class="btn btn-danger m-1" style="background-color: var(--bs-btn-hover-bg);" > DELETE </button>            
           </td>
           </ng-container>
-        
-         </tr>
+       
+        </tr>
+
+          <div>
+             <button  class="btn btn-dark m-1" style="background-color: var(--bs-btn-hover-bg);" (click)="previousPage()" [disabled]="hasPrevious()">  Previous</button>
+             <button class="btn btn-dark m-1" style="background-color: var(--bs-btn-hover-bg);" (click)="nextPage()" [disabled]="hasNext()">  Next  </button>
+         </div>
         
        </table>
   

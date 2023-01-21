@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtRequest } from '../entity/jwt-request';
 import { JwtResponse } from '../entity/jwt-response';
+import { Page } from '../entity/page';
 import { User } from '../entity/user';
 import { AuthService } from './auth.service';
 
@@ -103,7 +104,14 @@ export class UserService {
   }
 
 
+  getUsersListWithPagination(page:Page): Observable<Page>{
 
+   var pageNumber = page.number;
+   var pageSize = page.size;
+
+  return this.httpClient.get<Page>( `${this.UserBaseURL}/get` , {params: {page: pageNumber, size: pageSize}});
+    
+  }
 
 
 
