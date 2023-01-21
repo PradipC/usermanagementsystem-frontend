@@ -4,6 +4,7 @@ import { User } from '../entity/user';
 import { Page } from '../entity/page';
 import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
+import { UtilService } from '../_services/util.service';
 
 @Component({
   selector: 'app-admin',
@@ -14,6 +15,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private authService:AuthService,
     private userService:UserService,
+    private utilService:UtilService,
     private router : Router) { }
 
   listOfUsers : User[];
@@ -21,25 +23,16 @@ export class AdminComponent implements OnInit {
   loginUser : User;
   page = new Page();
 
-  date : Date = new Date();
   welcomeMessage : string = 'Hello';
 
   ngOnInit(): void {
 
     this.loginUser = this.authService.getLoginUser();    
+    this.welcomeMessage = this.utilService.getGreetingMessage();
 
-  
     this.getUsersList(this.page);
-
-    const currentHour = this.date.getHours();
+   
     
-    if (currentHour >= 6 && currentHour < 12) {
-        this.welcomeMessage = 'Good morning!';
-    } else if (currentHour >= 12 && currentHour < 18) {
-        this.welcomeMessage = 'Good afternoon!';
-    } else {
-        this.welcomeMessage = 'Good evening!';
-    }
   }
 
   
@@ -109,4 +102,6 @@ export class AdminComponent implements OnInit {
 
 
 }
+
+
 
